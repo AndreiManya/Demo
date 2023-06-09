@@ -17,7 +17,7 @@ const Title = styled.h1`
   opacity: 0.39;
   margin: 0;
 `;
-const SubTitle = styled.p`
+export const SubTitle = styled.p`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
