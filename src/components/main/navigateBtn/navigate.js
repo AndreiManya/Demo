@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-import { SubTitle } from "../header/header";
 import arrowRight from '../img/arrow-right.svg'
 import arrowRightHover from '../img/arrow-right-hover.svg'
 
@@ -8,7 +7,26 @@ const NavigateContainer = styled.div`
   width: 338px;
   margin-top: 72px;
   text-align: center;
+  @media (max-width: 992px) { 
+    margin-top: 40px;
+  }
 `;
+
+export const Label = styled.p`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.8);
+  max-width: 423px;
+  margin: 0 auto;
+  @media (max-width: 992px) { 
+    font-size: 16px;
+  }
+`;
+
 const BtnText = styled.span`
   font-family: 'Poppins';
   font-style: normal;
@@ -32,6 +50,7 @@ const Btn = styled.button`
   align-items: center;
   cursor: pointer;
   color: #FFFFFF;
+  margin-top: 12px;
   &:hover { 
       color: #1D4169;
       background: #FFFFFF;
@@ -45,7 +64,7 @@ const Btn = styled.button`
 
   return (
     <NavigateContainer>
-      <SubTitle>Check our event page when you wait:</SubTitle>
+      <Label>Check our event page when you wait:</Label>
       <Btn type="button">
         <BtnText>Go to the event</BtnText>
         <ArrowIcon></ArrowIcon>

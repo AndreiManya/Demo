@@ -7,7 +7,16 @@ const LogoContainer = styled.span`
     width: 190px;
     height: 60px;
     margin-top: 60px;
-    background: url(${logo}) 100% no-repeat;
+    background: url(${logo}) center no-repeat;
+    background-size: 100% auto;
+    @media (max-width: 992px) { 
+      margin-top: 100px;
+    }
+    @media (max-width: 368px) { 
+      margin-top: 80px;
+      width: 128px;
+      height: 40px;
+    }
 `;
 
  const Logo = () => { 

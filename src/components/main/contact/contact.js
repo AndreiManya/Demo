@@ -11,6 +11,9 @@ const ContactContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 992px) { 
+    margin-top: 169px;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -25,6 +28,14 @@ const InputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 992px) { 
+    max-width: 360px;
+    height: 20px;
+    padding: 10px 6px 10px 20px;
+  }
+  @media (max-width: 368px) { 
+    max-width: 280px;
+  }
 `;
 
 const Input = styled.input`
@@ -40,6 +51,9 @@ const Input = styled.input`
   &:focus { 
     outline: none;
   }
+  @media (max-width: 992px) { 
+    font-size: 14px;
+  }
 `;
 
 const SubmitBtn = styled.button`
@@ -53,6 +67,10 @@ const SubmitBtn = styled.button`
     border-color: #162C4E;
     background-image: url(${arrowRightHover});
     background-color: transparent;
+  }
+  @media (max-width: 992px) { 
+    width: 33px;
+    height: 33px;
   }
 `;
 

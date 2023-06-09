@@ -38,6 +38,28 @@ const Cloud = styled.img`
     &:last-of-type { 
         right: 0;
     }
+    @media (max-width: 1400px) { 
+      width: 290px;
+    }
+    @media (max-width: 768px) { 
+      width: 260px;
+      &:first-of-type { 
+        top: -20px;
+      }
+    }
+    @media (max-width: 665px) { 
+      width: 200px;
+    }
+    @media (max-width: 468px) { 
+      width: 180px;
+    }
+    @media (max-width: 368px) { 
+      width: 170px;
+      &:last-of-type { 
+        right: -20px;
+        top: -10px;
+      }
+    }
 `;
 
 const Main = () => { 

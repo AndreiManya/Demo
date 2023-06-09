@@ -6,8 +6,16 @@ const TimerContainer = styled.div`
   width: 588px;
   margin-top: 32px;
   display: grid;
-  grid-template-rows: 72px 132px;
+  grid-template-rows: 72px 54px;
   grid-template-columns: 132px 19px 132px 19px 132px 19px 132px;
+  row-gap: 3px;
+  @media (max-width: 992px) { 
+    margin-top: 40px;
+    width: 358px;
+    justify-content: center;
+    grid-template-rows: 36px auto;
+    grid-template-columns: 64px 10px 64px 10px 64px 10px 64px;
+  }
 `;
 
 const Symbol = styled.span`
@@ -18,15 +26,18 @@ const Symbol = styled.span`
   line-height: 100%;
   color: #162C4E;
   margin: auto;
+  @media (max-width: 992px) { 
+    font-size: 36px;
+  }
 `;
 
 const Leaf = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 132px;
-  height: 54px;
-  background: url(${leaft}) 100% no-repeat;
+  width: 100%;
+  background: url(${leaft}) center no-repeat;
+  background-size: 100% auto;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -42,10 +53,14 @@ const Leaf = styled.div`
   &:nth-of-type(4) {
     grid-column: 7/8;
   }
-
+  @media (max-width: 992px) { 
+    margin: auto;
+    font-size: 12px;
+  }
 `;
 
  const Timer = () => { 
+  const isMobile = window.matchMedia("only screen and (max-width: 992px)").matches
 
   return (
     <TimerContainer>
@@ -56,10 +71,10 @@ const Leaf = styled.div`
       <Symbol>41</Symbol>
       <Symbol>:</Symbol>
       <Symbol>48</Symbol>
-      <Leaf>Days</Leaf>
-      <Leaf>Hours</Leaf>
-      <Leaf>Minutes</Leaf>
-      <Leaf>Seconds</Leaf>
+      <Leaf>{isMobile ? 'DD' : 'Days'}</Leaf>
+      <Leaf>{isMobile ? 'HH' : 'Hours'}</Leaf>
+      <Leaf>{isMobile ? 'MM' : 'Minutes'}</Leaf>
+      <Leaf>{isMobile ? 'SS' : 'Seconds'}</Leaf>
     </TimerContainer>
   );
 }
