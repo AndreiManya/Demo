@@ -1,6 +1,6 @@
 {
   "name": "test",
-  "homepage": "http://andreimanya.github.io/Demo",
+  "homepage": "https://andreimanya.github.io/Demo",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://api.publicapis.org",
