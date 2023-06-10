@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import leaft from '../img/leaf.svg'
 
@@ -61,16 +61,35 @@ const Leaf = styled.div`
 
  const Timer = () => { 
   const isMobile = window.matchMedia("only screen and (max-width: 992px)").matches
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
+  const deadline = "July, 24, 2023";
+
+  const getTime = () => {
+    const time = Date.parse(deadline) - Date.now();
+
+    setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
+    setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
+    setMinutes(Math.floor((time / 1000 / 60) % 60));
+    setSeconds(Math.floor((time / 1000) % 60));
+  };
+  useEffect(() => {
+    const interval = setInterval(() => getTime(deadline), 1000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <TimerContainer>
-      <Symbol>92</Symbol>
+      <Symbol>{days}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>11</Symbol>
+      <Symbol>{hours}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>41</Symbol>
+      <Symbol>{minutes}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>48</Symbol>
+      <Symbol>{seconds}</Symbol>
       <Leaf>{isMobile ? 'DD' : 'Days'}</Leaf>
       <Leaf>{isMobile ? 'HH' : 'Hours'}</Leaf>
       <Leaf>{isMobile ? 'MM' : 'Minutes'}</Leaf>
