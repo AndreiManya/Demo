@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react"
+import styled from 'styled-components'
 import leaft from '../img/leaf.svg'
 
 const TimerContainer = styled.div`
@@ -61,35 +61,34 @@ const Leaf = styled.div`
 
  const Timer = () => { 
   const isMobile = window.matchMedia("only screen and (max-width: 992px)").matches
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [days, setDays] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
 
-  const deadline = "July, 24, 2023";
+  const deadline = "July, 24, 2023"
 
   const getTime = () => {
-    const time = Date.parse(deadline) - Date.now();
+    const time = Date.parse(deadline) - Date.now()
 
-    setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-    setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-    setMinutes(Math.floor((time / 1000 / 60) % 60));
-    setSeconds(Math.floor((time / 1000) % 60));
+    setDays(Math.floor(time / (1000 * 60 * 60 * 24)))
+    setHours(Math.floor((time / (1000 * 60 * 60)) % 24))
+    setMinutes(Math.floor((time / 1000 / 60) % 60))
+    setSeconds(Math.floor((time / 1000) % 60))
   };
   useEffect(() => {
-    const interval = setInterval(() => getTime(deadline), 1000);
-
-    return () => clearInterval(interval);
+    const interval = setInterval(() => getTime(deadline), 1000)
+    return () => clearInterval(interval)
   }, []);
   return (
     <TimerContainer>
-      <Symbol>{days}</Symbol>
+      <Symbol>{days?.toString().length > 1 ? days : `0${days}`}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>{hours}</Symbol>
+      <Symbol>{hours?.toString().length > 1 ? hours : `0${hours}`}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>{minutes}</Symbol>
+      <Symbol>{minutes?.toString().length > 1 ? minutes : `0${minutes}`}</Symbol>
       <Symbol>:</Symbol>
-      <Symbol>{seconds}</Symbol>
+      <Symbol>{seconds?.toString().length > 1 ? seconds : `0${seconds}`}</Symbol>
       <Leaf>{isMobile ? 'DD' : 'Days'}</Leaf>
       <Leaf>{isMobile ? 'HH' : 'Hours'}</Leaf>
       <Leaf>{isMobile ? 'MM' : 'Minutes'}</Leaf>
