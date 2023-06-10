@@ -1,5 +1,5 @@
-import React from "react";
-import styled from 'styled-components';
+import React, {useState} from "react"
+import styled from 'styled-components'
 import arrowRight from '../img/arrow-right.svg'
 import arrowRightHover from '../img/arrow-right-hover.svg'
 
@@ -11,12 +11,13 @@ const ContactContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   @media (max-width: 992px) { 
     margin-top: 169px;
   }
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   width: 100%;
   max-width: 440px;
   height: 26px;
@@ -74,17 +75,61 @@ const SubmitBtn = styled.button`
   }
 `;
 
- const Contact = () => { 
 
+const Error = styled.p`
+  position: absolute;
+  bottom: 15px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: red;
+  @media (max-width: 992px) { 
+    font-size: 18px;
+  }
+`;
+
+ const Contact = ({openModal}) => { 
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState(false)
+
+  const onSubmit = async (e) => { 
+    e.preventDefault()
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    if (!email || regex.test(email) === false ){
+      setError(true)
+      return
+    } else {
+      setError(false)
+    }
+    try {
+      await fetch('/entries', {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email), 
+      }).then((e) => e.json());
+      openModal('success')
+    } catch (error) {
+      openModal('error')
+    }
+  }
   return (
     <ContactContainer>
-      <InputContainer>
+      <InputContainer
+        onSubmit={onSubmit}
+      >
         <Input
           placeholder="Enter your Email and get notified"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         >
         </Input>
         <SubmitBtn type="submit"/>
       </InputContainer>
+      {error && <Error>Invalid email</Error>}
     </ContactContainer>
   );
 }
