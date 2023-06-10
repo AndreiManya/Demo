@@ -9,6 +9,7 @@ const LogoContainer = styled.span`
     margin-top: 60px;
     background: url(${logo}) center no-repeat;
     background-size: 100% auto;
+    cursor: pointer;
     @media (max-width: 992px) { 
       margin-top: 100px;
     }
@@ -22,7 +23,12 @@ const LogoContainer = styled.span`
  const Logo = () => { 
 
   return (
-    <LogoContainer/>
+    <LogoContainer
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.href='';
+      }}
+    />
   );
 }
 

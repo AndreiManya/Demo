@@ -65,7 +65,13 @@ const Btn = styled.button`
   return (
     <NavigateContainer>
       <Label>Check our event page when you wait:</Label>
-      <Btn type="button">
+      <Btn 
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href='http://google.com';
+        }}
+      >
         <BtnText>Go to the event</BtnText>
         <ArrowIcon></ArrowIcon>
       </Btn>
