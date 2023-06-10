@@ -1,5 +1,5 @@
-import React from "react";
-import styled from 'styled-components';
+import React, {useState} from "react"
+import styled from 'styled-components'
 //images
 import cloudLeft from './img/cloudLeft.svg'
 import cloudRight from './img/cloudRight.svg'
@@ -8,7 +8,8 @@ import Logo from './logo/logo.js'
 import Header from './header/header.js'
 import Timer from './timer/timer.js'
 import NavigateBtn from './navigateBtn/navigate.js'
-import Contact from "./contact/contact";
+import Contact from "./contact/contact"
+import Modal from './modal/modal.js'
 
 const Container = styled.div`
     max-width: 1920px;
@@ -63,8 +64,18 @@ const Cloud = styled.img`
 `;
 
 const Main = () => { 
-
-
+  const [modal, setModal] = useState({ open: false, type: 'success'})
+  const openModal = (type) => { 
+    console.log(12)
+    setModal({open: true, type})
+    document.body.style.overflow = 'hidden';
+    console.log(modal)
+  }
+  const onClose = () => { 
+    setModal({ open: false, type: ''})
+    document.body.style.overflow = 'unset';
+    console.log(modal)
+  }
   return (
     <Container>
       <Cloud src={cloudLeft}/>
@@ -73,7 +84,11 @@ const Main = () => {
       <Header/>
       <Timer/>
       <NavigateBtn/>
-      <Contact/>
+      <Contact openModal={(e) => openModal(e)}/>
+      {
+        modal.open &&
+        <Modal type={modal.type} onClose={onClose}/>
+      }
     </Container>
   );
 }
